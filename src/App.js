@@ -6,7 +6,6 @@ import Learn from './components/Learn';
 import Explore from './components/Explore';
 import CreatAcc from './components/CreateAcc';
 import SearchAddress from './components/searchAddress';
-import chatIcon from './components/assets/DMLOGO.png'; 
 function App() {
   const handleExploreSubmit = (inputValue) => {
     console.log('Submitted address:', inputValue);       
@@ -20,16 +19,21 @@ function App() {
     script.type = "text/javascript";
 
     script.onload = () => {
+      try{
       window.voiceflow.chat.load({
         verify: { projectID: '66bc0762483c6193a6c3c7ea' },
         url: 'https://general-runtime.voiceflow.com',
-        versionID: 'production',
+        versionID: '66bc0762483c6193a6c3c7eb',
+        authToken: 'VF.DM.66bc2aa8adfea22165673095.KPuTvq6xaCkbpjkC',
         render: {
-          mode: 'embedded'
+          mode: 'overlay'
           // target: document.getElementById('flat-chat') // Targeting the element with ID 'flat-chat'
         },
-        autostart: false // The chatbot will not start automatically
+        autostart: false 
       });
+    } catch (error) {
+      console.log("Error loading voiceflow chat", error);
+    }
     };
 
     document.body.appendChild(script);
